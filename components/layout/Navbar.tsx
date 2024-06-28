@@ -1,17 +1,13 @@
-import React from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { SignedIn, UserButton } from "@clerk/nextjs";
 import Logo from "./Logo";
 import { SidebarDrawer } from "./SidebarDrawer";
 
 const Navbar = () => {
   return (
-    <nav className="bg-foreground h-[72px] w-full px-4 flex justify-between items-center">
+    <nav className="max-sm:fixed z-50 bg-foreground h-[72px] w-full px-4 flex-between">
       <SidebarDrawer />
       <Logo />
-      <Avatar>
-        <AvatarImage />
-        <AvatarFallback className="bg-primary text-white">HS</AvatarFallback>
-      </Avatar>
+      <UserButton />
     </nav>
   );
 };

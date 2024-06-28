@@ -12,7 +12,7 @@ const Logo = () => {
         alt="Logo"
         className="w-10 h-10"
       />
-      <span className="text-xl font-bold text-white">VidMeet</span>
+      <span className="text-2xl font-bold text-white">VidMeet</span>
     </Link>
   );
 };
