@@ -3,3 +3,9 @@ export type NavItem = {
   icon: string;
   path: string;
 };
+
+export enum MeetingState {
+  STARTING = "STARTING",
+  JOINING = "JOINING",
+  SCHEDULING = "SCHEDULING",
+}

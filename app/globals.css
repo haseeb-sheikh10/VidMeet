@@ -66,6 +66,14 @@
   }
 }
 
+* {
+  box-sizing: border-box;
+}
+
+#root {
+  min-width: 350px;
+}
+
 @layer base {
   * {
     @apply border-border;

@@ -27,3 +27,30 @@ export const navItems: NavItem[] = [
     path: "/personal-room",
   },
 ];
+
+export const meetingActionCards = [
+  {
+    title: "New Meeting",
+    desc: "Start an instant meeting",
+    color: "#FF742E",
+    icon: "/icons/add-meeting.svg",
+  },
+  {
+    title: "Join Meeting",
+    desc: "via invitation link",
+    color: "#0e78f9",
+    icon: "/icons/join-meeting.svg",
+  },
+  {
+    title: "Schedule Meeting",
+    desc: "Plan your meeting",
+    color: "#830EF9",
+    icon: "/icons/schedule.svg",
+  },
+  {
+    title: "View Recordings",
+    desc: "Meeting recordings",
+    color: "#F9A90E",
+    icon: "/icons/recordings.svg",
+  },
+];
