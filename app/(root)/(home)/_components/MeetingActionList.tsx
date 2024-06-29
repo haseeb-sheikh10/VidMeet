@@ -1,5 +1,4 @@
 import { meetingActionCards } from "@/constants";
-import React from "react";
 import MeetingActionCard from "./MeetingActionCard";
 
 const MeetingActionList = () => {

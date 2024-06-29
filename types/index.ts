@@ -9,3 +9,9 @@ export enum MeetingState {
   JOINING = "JOINING",
   SCHEDULING = "SCHEDULING",
 }
+
+export enum CallLayout {
+  GRID = "GRID",
+  SPEAKER_LEFT = "SPEAKER_LEFT",
+  SPEAKER_RIGHT = "SPEAKER_RIGHT",
+}

@@ -10,6 +10,7 @@ interface MeetingActionCardProps {
   desc: string;
   icon: string;
   color: string;
+  state: MeetingState | undefined;
 }
 
 const MeetingActionCard = ({
@@ -17,6 +18,7 @@ const MeetingActionCard = ({
   desc,
   icon,
   color,
+  state,
 }: MeetingActionCardProps) => {
   const { onOpen } = useMeetingModal();
 
@@ -26,7 +28,7 @@ const MeetingActionCard = ({
       style={{
         backgroundColor: color,
       }}
-      onClick={() => onOpen(MeetingState.JOINING)}
+      onClick={() => onOpen(state)}
     >
       <div className="bg-white bg-opacity-50 p-3 w-fit rounded-[10px] aspect-square flex-center">
         <Image src={icon} alt={title} width={25} height={25} />

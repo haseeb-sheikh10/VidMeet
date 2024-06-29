@@ -1,4 +1,4 @@
-import { NavItem } from "@/types";
+import { MeetingState, NavItem } from "@/types";
 
 export const navItems: NavItem[] = [
   {
@@ -34,23 +34,27 @@ export const meetingActionCards = [
     desc: "Start an instant meeting",
     color: "#FF742E",
     icon: "/icons/add-meeting.svg",
+    state: MeetingState.STARTING,
   },
   {
     title: "Join Meeting",
     desc: "via invitation link",
     color: "#0e78f9",
     icon: "/icons/join-meeting.svg",
+    state: MeetingState.JOINING,
   },
   {
     title: "Schedule Meeting",
     desc: "Plan your meeting",
     color: "#830EF9",
     icon: "/icons/schedule.svg",
+    state: MeetingState.SCHEDULING,
   },
   {
     title: "View Recordings",
     desc: "Meeting recordings",
     color: "#F9A90E",
     icon: "/icons/recordings.svg",
+    state: undefined,
   },
 ];

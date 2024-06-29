@@ -1,11 +1,10 @@
 "use client";
 
-import MeetingModal from "@/components/modals/MeetingModal";
+import MeetingModal from "@/app/(root)/(home)/_components/MeetingModal";
 import { useMeetingModal } from "@/store/useMeetingModal";
 import React, { useEffect, useState } from "react";
 
 import { MeetingState } from "@/types";
-import { createMeeting } from "@/app/(root)/(home)/actions/meeting";
 
 const ModalProvider = () => {
   const { meetingState } = useMeetingModal();
@@ -20,10 +19,10 @@ const ModalProvider = () => {
   return (
     <>
       <MeetingModal
-        isOpen={meetingState === MeetingState.JOINING}
+        isOpen={meetingState === MeetingState.STARTING}
         title="Start an Instant Meeting"
         buttonText={"Start Meeting"}
-        onClick={createMeeting}
+        state={MeetingState.STARTING}
       />
     </>
   );

@@ -1,15 +1,18 @@
 import { MeetingState } from "@/types";
 import { create } from "zustand";
+import { Call } from "@stream-io/video-react-sdk";
 
 interface UseMeetingModal {
   meetingState: MeetingState | undefined;
   setMeetingState: (state: MeetingState) => void;
-  onOpen: (state: MeetingState) => void;
+  onOpen: (state: MeetingState | undefined) => void;
   onClose: () => void;
   description: string;
   datetime: string;
   setDescription: (description: string) => void;
   setDatetime: (datetime: string) => void;
+  callDetails: Call;
+  setCallDetails: (state: Call) => void;
 }
 
 export const useMeetingModal = create<UseMeetingModal>((set) => ({
@@ -21,4 +24,6 @@ export const useMeetingModal = create<UseMeetingModal>((set) => ({
   datetime: "",
   setDescription: (description) => set({ description }),
   setDatetime: (datetime) => set({ datetime }),
+  callDetails: {} as Call,
+  setCallDetails: (state) => set({ callDetails: state }),
 }));

@@ -1,35 +1,48 @@
-import React from "react";
+"use client";
+
+import { useCallback } from "react";
 
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import { useMeetingModal } from "@/store/useMeetingModal";
-import { Button } from "../ui/button";
+import { MeetingState } from "@/types";
 import Image from "next/image";
+import { Button } from "../../../../components/ui/button";
+import { useMeeting } from "@/app/(root)/(home)/_hooks/useMeeting";
 
 interface MeetingModalProps {
   isOpen: boolean;
   title: string;
   buttonText: string;
-  onClick: () => void;
   image?: string;
   buttonIcon?: string;
+  state: MeetingState;
 }
 
 const MeetingModal = ({
   isOpen,
   title,
   buttonText,
-  onClick,
   image,
   buttonIcon,
+  state,
 }: MeetingModalProps) => {
   const { onClose } = useMeetingModal();
+  const { createMeeting } = useMeeting();
+
+  const fetchHandler = useCallback(() => {
+    switch (state) {
+      case MeetingState.STARTING:
+        createMeeting();
+        break;
+      default:
+        break;
+    }
+  }, [createMeeting, state]);
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -44,7 +57,7 @@ const MeetingModal = ({
         </DialogHeader>
         <Button
           className="focus-visible:ring-0 focus-visible:ring-offset-0 hover:opacity-75 transition w-full"
-          onClick={onClick}
+          onClick={fetchHandler}
         >
           {buttonIcon && (
             <Image src={buttonIcon} alt={buttonText} width={13} height={13} />

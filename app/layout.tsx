@@ -1,8 +1,9 @@
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import "@stream-io/video-react-sdk/dist/css/styles.css";
 import "./globals.css";
-import ModalProvider from "@/providers/ModalProvider";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,7 +35,7 @@ export default function RootLayout({
         }}
       >
         <body className={`${inter.className} dark bg-background`}>
-          <ModalProvider />
+          <Toaster />
           {children}
         </body>
       </ClerkProvider>
