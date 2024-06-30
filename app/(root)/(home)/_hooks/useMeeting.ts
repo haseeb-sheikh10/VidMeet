@@ -9,7 +9,15 @@ import { useCallback } from "react";
 
 export const useMeeting = () => {
   const router = useRouter();
-  const { onClose, setCallDetails } = useMeetingModal();
+  const {
+    onClose,
+    callDetails,
+    setCallDetails,
+    description,
+    datetime,
+    setDescription,
+    setDatetime,
+  } = useMeetingModal();
   const { toast } = useToast();
   const { user } = useUser();
   const client = useStreamVideoClient();
@@ -22,23 +30,28 @@ export const useMeeting = () => {
       const call = client.call("default", id);
       if (!call) throw new Error("Failed to create a meeting");
 
-      const starts_at = new Date(Date.now()).toISOString();
-      const description = "Instant Meeting";
+      const starts_at = datetime
+        ? new Date(datetime).toISOString()
+        : new Date(Date.now()).toISOString();
+
+      const desc = description || "Instant Meeting";
 
       await call.getOrCreate({
         data: {
           starts_at,
           custom: {
-            description,
+            description: desc,
           },
         },
       });
 
       setCallDetails(call);
 
-      router.push(`/meeting/${call.id}`);
-      onClose();
+      if (!description) router.push(`/meeting/${call.id}`);
+
       toast({ title: "Meeting Created" });
+      setDescription("");
+      setDatetime("");
     } catch (error: any) {
       console.error(error);
       toast({
@@ -47,7 +60,25 @@ export const useMeeting = () => {
         description: error?.message,
       });
     }
-  }, [client, setCallDetails, user, router, onClose, toast]);
+  }, [
+    client,
+    user,
+    router,
+    toast,
+    description,
+    datetime,
+    setCallDetails,
+    setDescription,
+    setDatetime,
+  ]);
 
-  return { createMeeting };
+  const copyMeetingLink = useCallback(() => {
+    navigator.clipboard.writeText(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${callDetails?.id}`
+    );
+
+    toast({ title: "Link copied to clipboard" });
+  }, [callDetails, toast]);
+
+  return { createMeeting, copyMeetingLink };
 };

@@ -10,6 +10,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "VidMeet",
   description: "Plan meetings with ease",
+  icons: {
+    icon: "/logo.svg",
+  },
 };
 
 export default function RootLayout({

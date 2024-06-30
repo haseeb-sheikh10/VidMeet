@@ -3,7 +3,7 @@
 import { useMeetingModal } from "@/store/useMeetingModal";
 import { MeetingState } from "@/types";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 
 interface MeetingActionCardProps {
   title: string;
@@ -20,7 +20,13 @@ const MeetingActionCard = ({
   color,
   state,
 }: MeetingActionCardProps) => {
-  const { onOpen } = useMeetingModal();
+  const { onOpen, onClose } = useMeetingModal();
+
+  useEffect(() => {
+    return () => {
+      onClose();
+    };
+  }, [onClose]);
 
   return (
     <div

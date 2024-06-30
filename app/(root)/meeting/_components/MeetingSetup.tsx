@@ -35,12 +35,20 @@ const MeetingSetup = ({ setIsSetupComplete }: MeetingSetupProps) => {
       <VideoPreview />
       <div className="flex-center h-16 gap-3">
         <Hint label="Toggle Mic">
-          <Button size="icon" variant="outline">
+          <Button
+            size="icon"
+            variant="outline"
+            onClick={() => setIsMicOn(!isMicOn)}
+          >
             {isMicOn ? <Mic /> : <MicOff />}
           </Button>
         </Hint>
         <Hint label="toggle Camera">
-          <Button size="icon" variant="outline">
+          <Button
+            size="icon"
+            variant="outline"
+            onClick={() => setIsCamOn(!isCamOn)}
+          >
             {isCamOn ? <Video /> : <VideoOff />}
           </Button>
         </Hint>

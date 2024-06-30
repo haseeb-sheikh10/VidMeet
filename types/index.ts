@@ -15,3 +15,9 @@ export enum CallLayout {
   SPEAKER_LEFT = "SPEAKER_LEFT",
   SPEAKER_RIGHT = "SPEAKER_RIGHT",
 }
+
+export enum CallType {
+  UPCOMING = "UPCOMING",
+  PREVIOUS = "PREVIOUS",
+  RECORDING = "RECORDING",
+}

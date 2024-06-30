@@ -8,7 +8,12 @@ const HomeLayout = ({ children }: { children: React.ReactNode }) => {
       <Navbar />
       <div className="flex">
         <Sidebar />
-        <section className="flex min-h-screen flex-1 flex-col p-10 max-sm:pt-24 max-sm:px-6">
+        <section
+          style={{
+            minHeight: "calc(100vh - 152px)",
+          }}
+          className="flex flex-1 flex-col p-10 max-sm:pt-24 max-sm:px-6"
+        >
           <div className="w-full">{children}</div>
         </section>
       </div>

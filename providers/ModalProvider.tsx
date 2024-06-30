@@ -1,13 +1,14 @@
 "use client";
 
-import MeetingModal from "@/app/(root)/(home)/_components/MeetingModal";
+import StartMeetingModal from "@/app/(root)/(home)/_components/StartMeetingModal";
 import { useMeetingModal } from "@/store/useMeetingModal";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
+import ScheduleMeetingModal from "@/app/(root)/(home)/_components/ScheduleMeetingModal";
 import { MeetingState } from "@/types";
 
 const ModalProvider = () => {
-  const { meetingState } = useMeetingModal();
+  const { meetingState, callDetails } = useMeetingModal();
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -18,11 +19,19 @@ const ModalProvider = () => {
 
   return (
     <>
-      <MeetingModal
+      <StartMeetingModal
         isOpen={meetingState === MeetingState.STARTING}
         title="Start an Instant Meeting"
         buttonText={"Start Meeting"}
         state={MeetingState.STARTING}
+      />
+      <ScheduleMeetingModal
+        isOpen={meetingState === MeetingState.SCHEDULING}
+        title={!callDetails ? "Create Meeting" : "Meeting Created"}
+        state={MeetingState.STARTING}
+        buttonText="Copy Meeting Link"
+        image="/icons/checked.svg"
+        buttonIcon="/icons/copy.svg"
       />
     </>
   );
