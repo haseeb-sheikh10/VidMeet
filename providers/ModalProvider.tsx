@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 
 import ScheduleMeetingModal from "@/app/(root)/(home)/_components/ScheduleMeetingModal";
 import { MeetingState } from "@/types";
+import JoinMeetingModal from "@/app/(root)/(home)/_components/JoinMeetingModal";
 
 const ModalProvider = () => {
   const { meetingState, callDetails } = useMeetingModal();
@@ -32,6 +33,12 @@ const ModalProvider = () => {
         buttonText="Copy Meeting Link"
         image="/icons/checked.svg"
         buttonIcon="/icons/copy.svg"
+      />
+      <JoinMeetingModal
+        isOpen={meetingState === MeetingState.JOINING}
+        title="Join Meeting"
+        buttonText={"Join"}
+        state={MeetingState.JOINING}
       />
     </>
   );

@@ -15,6 +15,8 @@ export const useMeeting = () => {
     setCallDetails,
     description,
     datetime,
+    join_link,
+    setJoinLink,
     setDescription,
     setDatetime,
   } = useMeetingModal();
@@ -72,13 +74,25 @@ export const useMeeting = () => {
     setDatetime,
   ]);
 
-  const copyMeetingLink = useCallback(() => {
-    navigator.clipboard.writeText(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${callDetails?.id}`
-    );
+  const copyMeetingLink = useCallback(
+    (link: string = "") => {
+      navigator.clipboard.writeText(
+        link
+          ? link
+          : `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${callDetails?.id}`
+      );
 
-    toast({ title: "Link copied to clipboard" });
-  }, [callDetails, toast]);
+      toast({ title: "Link copied to clipboard" });
+    },
+    [callDetails, toast]
+  );
 
-  return { createMeeting, copyMeetingLink };
+  const joinMeeting = useCallback(() => {
+    router.replace(join_link);
+    setJoinLink("");
+
+    toast({ title: "Meeting Joined" });
+  }, [router, join_link, setJoinLink, toast]);
+
+  return { createMeeting, copyMeetingLink, joinMeeting };
 };

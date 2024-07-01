@@ -84,7 +84,8 @@ const CallList = ({ type }: { type: CallType }) => {
       setrecordings(recordings);
     };
 
-    if (type === CallType.RECORDING) fethcRecordings();
+    if (type === CallType.RECORDING && callRecordings?.length > 0)
+      fethcRecordings();
   }, [type, callRecordings]);
 
   if (isLoading) return <Loader />;
@@ -94,14 +95,14 @@ const CallList = ({ type }: { type: CallType }) => {
       {calls && calls.length > 0 ? (
         calls?.map((meeting: Call | CallRecording) => (
           <MeetingCard
-            key={(meeting as Call).id}
+            key={meeting.id}
             {...meeting}
             icon={callIcon}
             type={type}
             title={
               (meeting as Call).state?.custom.description.substring(0, 26) ||
               meeting.filename.substring(0, 20) ||
-              "No Description"
+              "Personal Meeting"
             }
             date={formatDateString(
               (meeting as Call).state?.startsAt?.toLocaleString() ||

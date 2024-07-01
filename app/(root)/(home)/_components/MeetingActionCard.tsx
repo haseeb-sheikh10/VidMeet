@@ -3,6 +3,7 @@
 import { useMeetingModal } from "@/store/useMeetingModal";
 import { MeetingState } from "@/types";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 
 interface MeetingActionCardProps {
@@ -20,6 +21,7 @@ const MeetingActionCard = ({
   color,
   state,
 }: MeetingActionCardProps) => {
+  const router = useRouter();
   const { onOpen, onClose } = useMeetingModal();
 
   useEffect(() => {
@@ -34,7 +36,7 @@ const MeetingActionCard = ({
       style={{
         backgroundColor: color,
       }}
-      onClick={() => onOpen(state)}
+      onClick={() => (state ? onOpen(state) : router.push("/recordings"))}
     >
       <div className="bg-white bg-opacity-50 p-3 w-fit rounded-[10px] aspect-square flex-center">
         <Image src={icon} alt={title} width={25} height={25} />

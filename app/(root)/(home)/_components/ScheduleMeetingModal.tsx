@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 
 import {
   Dialog,
@@ -13,10 +13,11 @@ import { MeetingState } from "@/types";
 import Image from "next/image";
 import { Button } from "../../../../components/ui/button";
 import { useMeeting } from "@/app/(root)/(home)/_hooks/useMeeting";
-import { cn } from "@/lib/utils";
+import { cn, initialCurrectDatetime } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/components/ui/use-toast";
 interface MeetingModalProps {
   isOpen: boolean;
   title: string;
@@ -43,11 +44,32 @@ const ScheduleMeetingModal = ({
     setDatetime,
   } = useMeetingModal();
   const { createMeeting, copyMeetingLink } = useMeeting();
+  const { toast } = useToast();
 
   const getClickHandler = useCallback(() => {
-    if (!callDetails) createMeeting();
-    else copyMeetingLink();
-  }, [callDetails, createMeeting, copyMeetingLink]);
+    if (!callDetails) {
+      if (!description || !datetime) {
+        toast({
+          title: "Please fill all the fields",
+          variant: "destructive",
+        });
+        return;
+      }
+      createMeeting();
+    } else copyMeetingLink();
+  }, [
+    callDetails,
+    createMeeting,
+    copyMeetingLink,
+    toast,
+    description,
+    datetime,
+  ]);
+
+  useEffect(() => {
+    setDatetime(initialCurrectDatetime());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>

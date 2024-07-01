@@ -122,19 +122,58 @@
 
 /* === Stream class Overide ====== */
 
-.str-video {
-  --str-video__primary-color: #6002ee;
-  --str-video__secondary-color: #90ee02;
-  --str-video__text-color1: #282b2b;
-  --str-video__border-radius-circle: 15px;
+.str-video__call-stats {
+  max-width: 500px;
+  position: relative;
 }
 
-.str-video__device-settings__button {
-  background-color: transparent;
-  &:hover {
-    background-color: var(--foreground);
-  }
-  border-radius: 14px;
+.str-video__speaker-layout__wrapper {
+  max-height: 1000px;
 }
+
+.str-video__participant-details {
+  color: white;
+}
+
+.str-video__menu-container {
+  color: white;
+}
+
+.str-video__notification {
+  color: white;
+}
+
+.str-video__participant-list {
+  background-color: var(--foreground);
+  padding: 10px;
+  border-radius: 20px;
+  color: white;
+  height: 100%;
+}
+
+/* .str-video__call-controls__button {
+  height: 40px;
+} */
 
 /* ============================== */
+
+/* animation */
+
+.show-block {
+  width: 100%;
+  max-width: 350px;
+  display: block;
+  animation: show 0.7s forwards linear;
+}
+
+@keyframes show {
+  0% {
+    animation-timing-function: ease-in;
+    width: 0%;
+  }
+
+  100% {
+    animation-timing-function: ease-in;
+    width: 100%;
+  }
+}

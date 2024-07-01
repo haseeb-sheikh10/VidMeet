@@ -42,27 +42,29 @@ const MeetingCard = ({
         </div>
       </article>
       <article className={cn("flex justify-center relative", {})}>
-        <div className="relative flex w-full max-sm:hidden">
-          {avatarImages.map((img, index) => (
-            <Image
-              key={index}
-              src={img}
-              alt="attendees"
-              width={40}
-              height={40}
-              className={cn("rounded-full", { absolute: index > 0 })}
-              style={{ top: 0, left: index * 28 }}
-            />
-          ))}
-          <div className="flex-center absolute left-[136px] size-10 rounded-full border-[5px] border-forground bg-background">
-            +5
+        {type !== CallType.RECORDING && (
+          <div className="relative flex w-full max-sm:hidden">
+            {avatarImages.map((img, index) => (
+              <Image
+                key={index}
+                src={img}
+                alt="attendees"
+                width={40}
+                height={40}
+                className={cn("rounded-full", { absolute: index > 0 })}
+                style={{ top: 0, left: index * 28 }}
+              />
+            ))}
+            <div className="flex-center absolute left-[136px] size-10 rounded-full border-[5px] border-forground bg-background">
+              +5
+            </div>
           </div>
-        </div>
+        )}
         {!isPreviousMeeting && (
-          <div className="flex gap-2">
+          <div className="flex flex-1 gap-2">
             <Button
               onClick={handleClick}
-              className="bg-primary hover:opacity-70 px-6 gap-2"
+              className="bg-primary hover:opacity-70 px-6 gap-2 w-full"
             >
               {buttonIcon1 && (
                 <Image src={buttonIcon1} alt="feature" width={20} height={20} />
@@ -77,7 +79,7 @@ const MeetingCard = ({
                 });
               }}
               variant="ghost"
-              className="px-6 gap-2"
+              className="px-6 gap-2 w-full"
             >
               <Image
                 src="/icons/copy.svg"
