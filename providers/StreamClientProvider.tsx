@@ -28,7 +28,14 @@ export const StreamClientProvider = ({
         name: user?.username || user?.id,
         image: user?.imageUrl,
       },
-      tokenProvider,
+      tokenProvider: async () => {
+        try {
+          return await tokenProvider();
+        } catch (error) {
+          console.error(error);
+          return "";
+        }
+      },
     });
 
     setVideoClient(client);
